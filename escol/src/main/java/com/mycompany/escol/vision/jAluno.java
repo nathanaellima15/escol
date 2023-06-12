@@ -3,29 +3,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.escol.vision;
+import com.mycompany.escol.entidades.*;
 
 public class jAluno extends javax.swing.JFrame {
+    
+    
+    private void resetCampos(boolean flag) {
+        txtNome.setEnabled(flag);
+        txtSexo.setEnabled(flag);
+        txtIdade.setEnabled(flag);
+        txtMatricula.setEnabled(flag); 
+        
+        if (!flag){
+        
+            txtNome.setText("");
+            txtSexo.setText("");
+            txtIdade.setText("");  
+            txtMatricula.setText("");
+        }
+    }
 
     public jAluno() {
         initComponents();
-    
-        txtNome.setEnabled(false);
-        txtSexo.setEnabled(false);
-        txtIdade.setEnabled(false);
-        txtMatricula.setEnabled(false);       
-    }
-    private void jlbCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-        txtNome.setText("");
-        txtSexo.setText("");
-        txtIdade.setText("");
-        txtMatricula.setText("");
         
-        txtNome.setEnabled(false);
-        txtSexo.setEnabled(false);
-        txtIdade.setEnabled(false);
-        txtMatricula.setEnabled(false); 
+        this.resetCampos(false);
+        
+    }
+    
+    public void jlbCancelarActionPerformed(java.awt.event.ActionEvent evt){
+        
+        this.resetCampos(false);
+        
+    }
 
-}
+    public void jlbSatvarActionPerfomed(java.awt.event.ActionEvent evt) {
+        Aluno a = new Aluno();
+        a.setNome(txtNome.getText());
+        a.setSexo(txtSexo.getText().charAt(0));
+        int aux = Integer.parseInt(txtIdade.getText());
+        a.setIdade(aux);
+        a.setMatricula(txtMatricula.getText());
+
+        this.resetCampos(false);
+        txtResult.setText(a.toString()); // mostra o resultado
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,7 +58,7 @@ public class jAluno extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jlbTitle = new javax.swing.JLabel();
         jlbNovo = new javax.swing.JButton();
-        jlbEdicao = new javax.swing.JButton();
+        jlbEdit = new javax.swing.JButton();
         jlbCancelar = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         txtSexo = new javax.swing.JTextField();
@@ -47,10 +68,10 @@ public class jAluno extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jlbSalvar = new javax.swing.JButton();
+        jlbExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtResult = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,7 +102,7 @@ public class jAluno extends javax.swing.JFrame {
             }
         });
 
-        jlbEdicao.setText("Editar");
+        jlbEdit.setText("Editar");
 
         jlbCancelar.setText("Cancelar");
 
@@ -104,9 +125,9 @@ public class jAluno extends javax.swing.JFrame {
 
         jLabel4.setText("Matricula");
 
-        jButton2.setText("Salvar");
+        jlbSalvar.setText("Salvar");
 
-        jButton1.setText("Excluir");
+        jlbExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,13 +145,13 @@ public class jAluno extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jlbNovo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlbEdicao)
+                                .addComponent(jlbEdit)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlbCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(jlbExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(jlbSalvar)
                                 .addGap(19, 19, 19))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,10 +191,10 @@ public class jAluno extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbNovo)
-                    .addComponent(jlbEdicao)
+                    .addComponent(jlbEdit)
                     .addComponent(jlbCancelar)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jlbExcluir)
+                    .addComponent(jlbSalvar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -192,9 +213,9 @@ public class jAluno extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtResult.setColumns(20);
+        txtResult.setRows(5);
+        jScrollPane1.setViewportView(txtResult);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,8 +236,8 @@ public class jAluno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -224,10 +245,8 @@ public class jAluno extends javax.swing.JFrame {
 
     private void jlbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlbNovoActionPerformed
         
-         txtNome.setEnabled(true);
-         txtSexo.setEnabled(true);
-         txtIdade.setEnabled(true);
-         txtMatricula.setEnabled(true);
+         this.resetCampos(true);
+         
     }//GEN-LAST:event_jlbNovoActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -265,8 +284,6 @@ public class jAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,14 +294,16 @@ public class jAluno extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jlbCancelar;
-    private javax.swing.JButton jlbEdicao;
+    private javax.swing.JButton jlbEdit;
+    private javax.swing.JButton jlbExcluir;
     private javax.swing.JButton jlbNovo;
+    private javax.swing.JButton jlbSalvar;
     private javax.swing.JLabel jlbTitle;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextArea txtResult;
     private javax.swing.JTextField txtSexo;
     // End of variables declaration//GEN-END:variables
 }

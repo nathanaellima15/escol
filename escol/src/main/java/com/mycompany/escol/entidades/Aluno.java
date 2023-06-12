@@ -17,7 +17,7 @@ public class Aluno {
           
   public Aluno(){
       this.nome = "";
-      this.sexo = 'f';
+      this.sexo = ' ';
       this.idade = 0;
       this.matricula = "";
       this.ano = new Date();
