@@ -30,23 +30,7 @@ public class jAluno extends javax.swing.JFrame {
         
     }
     
-    public void jlbCancelarActionPerformed(java.awt.event.ActionEvent evt){
-        
-        this.resetCampos(false);
-        
-    }
 
-    public void jlbSatvarActionPerfomed(java.awt.event.ActionEvent evt) {
-        Aluno a = new Aluno();
-        a.setNome(txtNome.getText());
-        a.setSexo(txtSexo.getText().charAt(0));
-        int aux = Integer.parseInt(txtIdade.getText());
-        a.setIdade(aux);
-        a.setMatricula(txtMatricula.getText());
-
-        this.resetCampos(false);
-        txtResult.setText(a.toString()); // mostra o resultado
-    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -243,6 +227,25 @@ public class jAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void jlbCancelarActionPerformed(java.awt.event.ActionEvent evt){
+        
+        this.resetCampos(false);
+        
+    }
+  
+    private void jlbSalvarActionPerformed(java.awt.event.ActionEvent evt) {
+        Aluno a = new Aluno();
+        a.setNome(txtNome.getText());
+        a.setSexo(txtSexo.getText().charAt(0));
+        int aux = Integer.parseInt(txtIdade.getText());
+        a.setIdade(aux);
+        a.setMatricula(txtMatricula.getText());
+
+        this.resetCampos(false);
+        txtResult.setText(a.toString()); // mostra o resultado
+    }
+    
     private void jlbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlbNovoActionPerformed
         
          this.resetCampos(true);
